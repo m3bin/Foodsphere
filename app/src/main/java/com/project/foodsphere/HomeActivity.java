@@ -1,5 +1,7 @@
 package com.project.foodsphere;
 
+import android.net.Uri;
+import android.net.wifi.hotspot2.pps.HomeSp;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +14,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,7 +47,20 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+
+        if (acct != null) {
+            View header=navigationView.getHeaderView(0);
+            String personName = acct.getDisplayName();
+            TextView username = (TextView) header.findViewById(R.id.uname);
+            username.setText(personName);
+            String personEmail = acct.getEmail();
+            TextView mailText = (TextView) header.findViewById(R.id.uemail);
+            mailText.setText(personEmail);
+        }
+
     }
+
 
     @Override
     public void onBackPressed() {
