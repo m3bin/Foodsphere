@@ -14,14 +14,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private ImageView imgProfilePic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,10 @@ public class HomeActivity extends AppCompatActivity
             String personEmail = acct.getEmail();
             TextView mailText = (TextView) header.findViewById(R.id.uemail);
             mailText.setText(personEmail);
+
+            String personPhotoUrl = acct.getPhotoUrl().toString();
+            imgProfilePic = (ImageView) header.findViewById(R.id.imageView);
+            Glide.with(getApplicationContext()).load(personPhotoUrl).into(imgProfilePic);
         }
 
     }
