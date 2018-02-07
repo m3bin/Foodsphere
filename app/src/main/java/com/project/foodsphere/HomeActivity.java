@@ -1,10 +1,11 @@
 package com.project.foodsphere;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -113,7 +114,7 @@ public class HomeActivity extends AppCompatActivity
 
     public void displaySelectedScreen(int itemId){
 
-        Fragment fragment = null;
+       // Fragment fragment = null;
 
         switch(itemId) {
             case R.id.nav_camera:
@@ -123,15 +124,17 @@ public class HomeActivity extends AppCompatActivity
                 //fragment = new Menu2();
                 break;
             case R.id.nav_slideshow:
-               fragment = new sell_fragment();
+                Intent intent = new Intent(HomeActivity.this,sell_activity.class);
+                startActivity(intent);
+               //fragment = new sell_fragment();
                 break;
         }
 
-        if(fragment!=null){
+       /* if(fragment!=null){
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.sell_frame, fragment);
             ft.commit();
-        }
+        } */
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }

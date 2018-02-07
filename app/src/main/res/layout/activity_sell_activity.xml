@@ -60,6 +60,11 @@
             android:inputType="number"
             android:hint="Quantity..." />
         <Button
+            android:id="@+id/prod_btnChoose"
+            android:text="Choose Image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
             android:id="@+id/prod_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
