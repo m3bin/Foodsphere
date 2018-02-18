@@ -128,6 +128,10 @@ public class HomeActivity extends AppCompatActivity
                 startActivity(intent);
                //fragment = new sell_fragment();
                 break;
+            case R.id.nav_profile:
+                Intent prof_intent = new Intent(HomeActivity.this,profile_activity.class);
+                startActivity(prof_intent);
+                break;
         }
 
        /* if(fragment!=null){

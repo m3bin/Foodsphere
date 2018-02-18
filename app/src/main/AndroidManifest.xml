@@ -21,7 +21,9 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".sell_activity"></activity>
+        <activity android:name=".sell_activity" />
+        <activity android:name=".profile_activity" />
+        <activity android:name=".fill_profile"></activity>
     </application>
 
 </manifest>
