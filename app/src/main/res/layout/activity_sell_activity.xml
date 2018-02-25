@@ -59,6 +59,14 @@
             android:ems="10"
             android:inputType="number"
             android:hint="Quantity..." />
+        <EditText
+            android:id="@+id/prod_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Location..." />
         <Button
             android:id="@+id/prod_btnChoose"
             android:text="Choose Image"

@@ -14,38 +14,38 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="name"/>
+                android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="email"/>
+                android:layout_height="wrap_content" />
 
             <TextView
+                android:id="@+id/hname"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="house name"/>
+                android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/landmark"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="landmark"/>
+                android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/city"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="city"/>
+                android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/district"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="district"/>
+                android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/pincode"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="pin code"/>
+                android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/phone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="phone"/>
+                android:layout_height="wrap_content" />
             <Button
                 android:id="@+id/prof_update"
                 android:layout_width="match_parent"

@@ -121,7 +121,8 @@ public class HomeActivity extends AppCompatActivity
                 //fragment = new Menu1();
                 break;
             case R.id.nav_gallery:
-                //fragment = new Menu2();
+                Intent intent1 = new Intent(HomeActivity.this,buy_activity.class);
+                startActivity(intent1);
                 break;
             case R.id.nav_slideshow:
                 Intent intent = new Intent(HomeActivity.this,sell_activity.class);

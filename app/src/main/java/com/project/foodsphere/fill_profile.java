@@ -46,7 +46,7 @@ public class fill_profile extends AppCompatActivity {
                 DatabaseReference ref = database.getReference("profile");
 
                 Map user_info = new HashMap();
-                user_info.put("house name", hname);
+                user_info.put("house_name", hname);
                 user_info.put("landmark", landmark);
                 user_info.put("city", city);
                 user_info.put("district", district);
