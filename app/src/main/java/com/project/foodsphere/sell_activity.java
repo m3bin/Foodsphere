@@ -51,11 +51,7 @@ public class sell_activity extends AppCompatActivity {
         uploadbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                uploadImage();
-
-
+             uploadImage();
             }
         });
     }
@@ -112,8 +108,6 @@ public class sell_activity extends AppCompatActivity {
             EditText plocationEditText = (EditText) findViewById(R.id.prod_location);
             String plocation = plocationEditText.getText().toString();
 
-
-
             products.put("name", pname);
             products.put("description", pdesc);
             products.put("category", pcategory);
@@ -137,6 +131,8 @@ public class sell_activity extends AppCompatActivity {
                             String url = imageurl.toString();
                             products.put("image",url);
                             ref2.child(pid).setValue(products);
+                            Intent intent = new Intent(sell_activity.this,HomeActivity.class);
+                            startActivity(intent);
                         }
                     })
 
@@ -155,10 +151,6 @@ public class sell_activity extends AppCompatActivity {
                             progressDialog.setMessage("Uploaded " + (int) progress + "%");
                         }
                     });
-
-
-
-
         }
     }
 }

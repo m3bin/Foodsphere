@@ -65,7 +65,9 @@
             android:id="@+id/update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Update" />
+            android:text="Update"
+            android:theme="@style/AppTheme.Button"
+            android:textColor="#E0E0E0"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -5,9 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -21,10 +25,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.security.auth.PrivateCredentialPermission;
+
 public class profile_activity extends AppCompatActivity {
 
     Button prof_updt;
     private DatabaseReference ref;
+    private ImageView dpic;
     profile prof;
 
     @Override
@@ -44,6 +51,12 @@ public class profile_activity extends AppCompatActivity {
         name.setText(uname);
         TextView email = (TextView) findViewById(R.id.email);
         email.setText(uemail);
+
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        String personPhotoUrl = acct.getPhotoUrl().toString();
+        dpic = (ImageView) findViewById(R.id.dp);
+        Glide.with(getApplicationContext()).load(personPhotoUrl).into(dpic);
+
         ref.addChildEventListener(new ChildEventListener() {
 
             @Override
@@ -60,8 +73,16 @@ public class profile_activity extends AppCompatActivity {
                     landmark1.setText(landmark);
 
                     String city  = prof.getCity();
-                    TextView city1 = (TextView) findViewById(R.id.city);
-                    city1.setText(city);
+                    if (city==null){
+                        TextView city1 = (TextView) findViewById(R.id.city);
+                        city1.setText("Please update address");
+                    }
+                    else
+                    {
+                        TextView city1 = (TextView) findViewById(R.id.city);
+                        city1.setText(city);
+                    }
+
 
                     String district = prof.getDistrict();
                     TextView district1 = (TextView) findViewById(R.id.district);
@@ -72,8 +93,16 @@ public class profile_activity extends AppCompatActivity {
                     pincode1.setText(pincode);
 
                     String phone = prof.getPhone();
-                    TextView phone1 = (TextView) findViewById(R.id.phone);
-                    phone1.setText(phone);
+                    if (phone==null){
+                        TextView phone1 = (TextView) findViewById(R.id.phone);
+                        phone1.setText("Please update phone number");
+                    }
+                    else
+                    {
+                        TextView phone1 = (TextView) findViewById(R.id.phone);
+                        phone1.setText(phone);
+                    }
+
                 }
 
             }

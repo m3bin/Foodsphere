@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.project.foodsphere">
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:allowBackup="true"
@@ -25,7 +29,8 @@
         <activity android:name=".buy_activity" />
         <activity android:name=".product_display" />
         <activity android:name=".profile_activity" />
-        <activity android:name=".fill_profile"></activity>
+        <activity android:name=".fill_profile" />
+
     </application>
 
 </manifest>

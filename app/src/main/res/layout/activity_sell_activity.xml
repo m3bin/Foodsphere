@@ -71,12 +71,16 @@
             android:id="@+id/prod_btnChoose"
             android:text="Choose Image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.Button"
+            android:textColor="#E0E0E0"/>
         <Button
             android:id="@+id/prod_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Upload" />
+            android:text="Upload"
+            android:theme="@style/AppTheme.Button"
+            android:textColor="#E0E0E0"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
