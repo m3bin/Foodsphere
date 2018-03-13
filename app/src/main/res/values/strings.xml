@@ -6,4 +6,16 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string-array name="category">
+        <item>Fruits</item>
+        <item>Vegetables</item>
+        <item>Bread and Bakery</item>
+        <item>Grocery and Staples</item>
+        <item>Dairy and Eggs</item>
+        <item>Beverages</item>
+        <item>Meat</item>
+        <item>Household</item>
+        <item>Personal Care</item>
+    </string-array>
 </resources>

@@ -7,11 +7,15 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +35,8 @@ public class sell_activity extends AppCompatActivity {
     String pid;
     private Uri filePath;
     private final int PICK_IMAGE_REQUEST = 71;
-    TextView text;
+    private Spinner spinner;
+    ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,9 @@ public class sell_activity extends AppCompatActivity {
         {
             filePath = data.getData();
 
+            img = (ImageView) findViewById(R.id.img);
+            Glide.with(getApplicationContext()).load(filePath).into(img);
+
         }
     }
 
@@ -84,7 +92,7 @@ public class sell_activity extends AppCompatActivity {
         if (filePath != null) {
 
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
-            final DatabaseReference ref2 = database.getReference(" products");
+            final DatabaseReference ref2 = database.getReference("products");
             pid = ref2.push().getKey();
             final Map products = new HashMap();
             EditText pnameEditText = (EditText) findViewById(R.id.prod_name);
@@ -93,8 +101,8 @@ public class sell_activity extends AppCompatActivity {
             EditText pdescEditText = (EditText) findViewById(R.id.prod_desc);
             String pdesc = pdescEditText.getText().toString();
 
-            EditText pcategoryEditText = (EditText) findViewById(R.id.prod_category);
-            String pcategory = pcategoryEditText.getText().toString();
+            spinner = findViewById(R.id.prod_category);
+            String pcategory = spinner.getSelectedItem().toString();
 
             EditText ppriceEditText = (EditText) findViewById(R.id.prod_price);
             String pprice = ppriceEditText.getText().toString();

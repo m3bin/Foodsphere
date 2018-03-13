@@ -19,6 +19,7 @@
             android:ems="10"
             android:inputType="text"
             android:hint="Product Name..." />
+
         <EditText
             android:id="@+id/prod_desc"
             android:layout_width="match_parent"
@@ -27,14 +28,21 @@
             android:ems="10"
             android:inputType="text"
             android:hint="Description..." />
-        <EditText
-            android:id="@+id/prod_category"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Category..."
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="text"
-            android:hint="Category..." />
+            android:textSize="17dp"
+            android:paddingLeft="5dp"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/prod_category"
+            android:entries="@array/category"
+            android:layout_weight="1"
+            android:ems="10"></Spinner>
         <EditText
             android:id="@+id/prod_price"
             android:layout_width="match_parent"
@@ -58,7 +66,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="number"
-            android:hint="Quantity..." />
+            android:hint="Quantity Available..." />
         <EditText
             android:id="@+id/prod_location"
             android:layout_width="match_parent"
@@ -66,7 +74,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="text"
-            android:hint="Location..." />
+            android:hint="Selling Location..." />
+
         <Button
             android:id="@+id/prod_btnChoose"
             android:text="Choose Image"
@@ -74,11 +83,16 @@
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.Button"
             android:textColor="#E0E0E0"/>
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center" />
         <Button
             android:id="@+id/prod_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Upload"
+            android:text="Upload Product"
             android:theme="@style/AppTheme.Button"
             android:textColor="#E0E0E0"/>
     </LinearLayout>

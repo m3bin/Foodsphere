@@ -105,70 +105,59 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
         progressDialog.show();
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("products");
+        mDatabase.child(" products");
 
         //adding an event listener to fetch values
 
-       /* mDatabase.child("products").orderByChild("location")
+       /* mDatabase.child(" products").orderByChild("location")
                 .equalTo(area).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot snapshot) {
                 //dismissing the progress dialog
                 progressDialog.dismiss();
-                //Toast.makeText(buy_activity.this, dataSnapshot.toString(), Toast.LENGTH_SHORT).show();
-                for (DataSnapshot adSnapshot: dataSnapshot.getChildren()) {
-                    //Toast.makeText(buy_activity.this, adSnapshot.toString(), Toast.LENGTH_LONG).show();
-                    Products products = adSnapshot.getValue(Products.class);
-                    product.add(products);
+                DataSnapshot snap=snapshot.child(" products");
+
+                for (DataSnapshot postSnapshot : snap.getChildren()) {
+                    Products products = postSnapshot.getValue(Products.class);
+                    Toast.makeText(buy_activity.this, products.getName(), Toast.LENGTH_SHORT).show();
+
+                        product.add(products);
+
+
                 }
                 //creating adapter
                 adapter = new MyAdapter(getApplicationContext(), product);
-
-                //adding adapter to recycler view
+                //adding adapter to recyclerview
                 recyclerView.setAdapter(adapter);
-
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(buy_activity.this, "Database error "+databaseError, Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
         }); */
 
-        mDatabase.addChildEventListener(new ChildEventListener() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot snapshot, String s) {
+            public void onDataChange(DataSnapshot snapshot) {
                 //dismissing the progress dialog
                 progressDialog.dismiss();
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                DataSnapshot snap=snapshot.child("products");
+
+                for (DataSnapshot postSnapshot : snap.getChildren()) {
                     Products products = postSnapshot.getValue(Products.class);
+                    //Toast.makeText(buy_activity.this, products.getName(), Toast.LENGTH_SHORT).show();
                     if (products.getLocation().equalsIgnoreCase(area)){
                         product.add(products);
                     }
 
                 }
-
                 //creating adapter
                 adapter = new MyAdapter(getApplicationContext(), product);
-
                 //adding adapter to recyclerview
                 recyclerView.setAdapter(adapter);
-
             }
-            @Override
-            public void onChildChanged(DataSnapshot snapshot,String s)
-            {
 
-            }
-            @Override
-            public void onChildRemoved(DataSnapshot snapshot)
-            {
-
-            }
-            @Override
-            public void onChildMoved(DataSnapshot snapshot,String s)
-            {
-
-            }
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 progressDialog.dismiss();
