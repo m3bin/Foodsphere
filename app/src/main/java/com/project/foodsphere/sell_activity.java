@@ -115,6 +115,7 @@ public class sell_activity extends AppCompatActivity {
 
             EditText plocationEditText = (EditText) findViewById(R.id.prod_location);
             String plocation = plocationEditText.getText().toString();
+            plocation.replaceAll(" ","");
 
             products.put("name", pname);
             products.put("description", pdesc);
@@ -141,6 +142,7 @@ public class sell_activity extends AppCompatActivity {
                             ref2.child(pid).setValue(products);
                             Intent intent = new Intent(sell_activity.this,HomeActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                     })
 

@@ -45,7 +45,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             public void onClick(View v) {
 
                 String str=products.getrKey();
-                Toast.makeText(context, "Key" + str, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Key" + str, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context,product_display.class);
                 intent.putExtra("key",str);
                 context.startActivity(intent);

@@ -56,6 +56,7 @@ public class fill_profile extends AppCompatActivity {
                 Toast.makeText(fill_profile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(fill_profile.this,profile_activity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

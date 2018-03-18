@@ -28,21 +28,27 @@
             android:ems="10"
             android:inputType="text"
             android:hint="Description..." />
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Category..."
-            android:layout_weight="1"
-            android:ems="10"
-            android:textSize="17dp"
-            android:paddingLeft="5dp"/>
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/prod_category"
-            android:entries="@array/category"
-            android:layout_weight="1"
-            android:ems="10"></Spinner>
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Category..."
+                android:layout_weight="1"
+                android:textSize="18dp"
+                android:paddingLeft="5dp"/>
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/prod_category"
+                android:entries="@array/category"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp">
+            </Spinner>
+        </LinearLayout>
+
         <EditText
             android:id="@+id/prod_price"
             android:layout_width="match_parent"

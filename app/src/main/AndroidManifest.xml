@@ -30,6 +30,10 @@
         <activity android:name=".product_display" />
         <activity android:name=".profile_activity" />
         <activity android:name=".fill_profile" />
+        <activity android:name=".cart_activity" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAjY3mw0lBFVQlZyT02oZyN1nAXHZQ-Sgk"/>
 
     </application>
 
