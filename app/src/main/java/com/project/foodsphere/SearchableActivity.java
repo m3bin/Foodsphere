@@ -49,8 +49,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+public class SearchableActivity extends AppCompatActivity implements LocationListener {
 
-public class buy_activity extends AppCompatActivity implements LocationListener {
     //recyclerview object
     private RecyclerView recyclerView;
 
@@ -96,25 +96,33 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
     //place picker request
     int PLACE_PICKER_REQUEST = 1;
 
+    //query
+    String query;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(null);
         setContentView(R.layout.activity_buy_activity);
 
-        ActivityCompat.requestPermissions(buy_activity.this,
+        ActivityCompat.requestPermissions(SearchableActivity.this,
                 new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                 1);
 
+        // Get the intent, verify the action and get the query
+        Intent intent = getIntent();
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            query = intent.getStringExtra(SearchManager.QUERY);
+        }
         //search button
         FloatingActionButton fab_search = findViewById(R.id.fab_search);
         fab_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+               PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
                 try {
-                    startActivityForResult(builder.build(buy_activity.this), PLACE_PICKER_REQUEST);
+                    startActivityForResult(builder.build(SearchableActivity.this), PLACE_PICKER_REQUEST);
                 } catch (GooglePlayServicesRepairableException e) {
                     e.printStackTrace();
                 } catch (GooglePlayServicesNotAvailableException e) {
@@ -122,9 +130,7 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
                 }
             }
         });
-
     }
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
@@ -134,23 +140,6 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
             }
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the options menu from XML
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-
-        // Get the SearchView and set the searchable configuration
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-        // Assumes current activity is the searchable activity
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
-
-        return true;
-    }
-
     private void display(){
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -161,7 +150,7 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
         progressDialog = new ProgressDialog(this);
 
         product = new ArrayList<>();
-       // Toast.makeText(this, area, Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, area, Toast.LENGTH_SHORT).show();
         //displaying progress dialog while fetching images
         progressDialog.setMessage("Please wait...");
         progressDialog.show();
@@ -172,34 +161,6 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
 
         //adding an event listener to fetch values
 
-       /* mDatabase.child(" products").orderByChild("location")
-                .equalTo(area).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                //dismissing the progress dialog
-                progressDialog.dismiss();
-                DataSnapshot snap=snapshot.child(" products");
-
-                for (DataSnapshot postSnapshot : snap.getChildren()) {
-                    Products products = postSnapshot.getValue(Products.class);
-                    Toast.makeText(buy_activity.this, products.getName(), Toast.LENGTH_SHORT).show();
-
-                        product.add(products);
-
-
-                }
-                //creating adapter
-                adapter = new MyAdapter(getApplicationContext(), product);
-                //adding adapter to recyclerview
-                recyclerView.setAdapter(adapter);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                progressDialog.dismiss();
-            }
-        }); */
-
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -209,8 +170,7 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
 
                 for (DataSnapshot postSnapshot : snap.getChildren()) {
                     Products products = postSnapshot.getValue(Products.class);
-                    //Toast.makeText(buy_activity.this, products.getName(), Toast.LENGTH_SHORT).show();
-                    if ((products.getLocation().equalsIgnoreCase(area)) && !(products.getUploader().equals(uid))){
+                    if (products.getLocation().equalsIgnoreCase(area) && products.getName().equalsIgnoreCase(query) && !(products.getUploader().equals(uid))){
                         product.add(products);
                     }
 
@@ -231,6 +191,7 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
                     //adding adapter to recyclerview
                     recyclerView.setAdapter(adapter);
                 }
+
             }
 
             @Override
@@ -239,7 +200,6 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
             }
         });
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -263,7 +223,7 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
                             addresses = geocoder.getFromLocation(latitude,longitude,1);
                             area = addresses.get(0).getLocality();
                             display();
-                           // Toast.makeText(getApplicationContext(),area, Toast.LENGTH_LONG).show();
+                            // Toast.makeText(getApplicationContext(),area, Toast.LENGTH_LONG).show();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -283,7 +243,7 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
 
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-                    Toast.makeText(buy_activity.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchableActivity.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
                 }
                 return;
             }
@@ -438,7 +398,7 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
 
         // Showing Alert Message
         //alertDialog.show();
-        Toast.makeText(buy_activity.this, "Turn gps on", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SearchableActivity.this, "Turn gps on", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -462,3 +422,4 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
     }
 
 }
+

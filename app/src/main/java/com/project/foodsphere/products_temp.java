@@ -1,10 +1,12 @@
 package com.project.foodsphere;
 import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
- * Created by Lenovo on 2/17/2018.
+ * Created by mebin on 24-03-2018.
  */
+
 @IgnoreExtraProperties
-public class Products {
+public class products_temp {
     public String name;
     public String ckey;
     public String image;
@@ -12,13 +14,14 @@ public class Products {
     public String key;
     public String description;
     public String measurement;
-    public String quantity;
+    public String avail_quantity;
+    public String buy_quantity;
     public String location;
     public String uploader;
 
     // Default constructor required for calls to
     // DataSnapshot.getValue(User.class)
-    public Products() {
+    public products_temp() {
     }
 
     public String getName() {
@@ -34,9 +37,9 @@ public class Products {
     public String getrKey(){return key;}
     public String getDescription(){return description;}
     public String getMeasurement(){return measurement;}
-    public String getQuantity(){return quantity;}
+    public String getAvail_quantity(){return avail_quantity;}
+    public String getBuy_quantity(){return  buy_quantity;}
     public String getLocation(){return location;}
     public String getCkey(){return ckey;}
     public String getUploader(){return uploader;}
-
 }

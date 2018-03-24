@@ -52,6 +52,7 @@ public class fill_profile extends AppCompatActivity {
                 user_info.put("district", district);
                 user_info.put("pincode", pincode);
                 user_info.put("phone", phone);
+                user_info.put("uid", uid);
                 ref.child(uid).setValue(user_info);
                 Toast.makeText(fill_profile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(fill_profile.this,profile_activity.class);

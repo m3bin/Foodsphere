@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/constraintLayout">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,16 +72,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:hint="Quantity Available..." />
-        <EditText
-            android:id="@+id/prod_location"
+
+        <Button
+            android:id="@+id/prodt_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="Selling Location..." />
+            android:theme="@style/AppTheme.Button"
+            android:text="Choose Location"
+            android:textColor="#E0E0E0"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:id="@+id/location_display"
+            android:layout_gravity="center" />
 
         <Button
             android:id="@+id/prod_btnChoose"

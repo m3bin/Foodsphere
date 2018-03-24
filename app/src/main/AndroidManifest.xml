@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.project.foodsphere">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-
 
     <application
         android:allowBackup="true"
@@ -26,15 +26,30 @@
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".sell_activity" />
-        <activity android:name=".buy_activity" />
+        <activity android:name=".buy_activity">
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchableActivity" />
+        </activity>
+        <activity android:name=".SearchableActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
         <activity android:name=".product_display" />
         <activity android:name=".profile_activity" />
         <activity android:name=".fill_profile" />
         <activity android:name=".cart_activity" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAjY3mw0lBFVQlZyT02oZyN1nAXHZQ-Sgk"/>
+            android:value="AIzaSyAjY3mw0lBFVQlZyT02oZyN1nAXHZQ-Sgk" />
 
+        <activity android:name=".my_products"></activity>
     </application>
 
 </manifest>

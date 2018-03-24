@@ -5,7 +5,7 @@ package com.project.foodsphere;
  */
 
 public class profile {
-   public String house_name,landmark,city,district,pincode,phone;
+   public String house_name,landmark,city,district,pincode,phone,uid;
 
    public profile(){
 
@@ -34,4 +34,5 @@ public class profile {
     public String getPhone() {
         return phone;
     }
+    public String getUid() {return uid;}
 }
