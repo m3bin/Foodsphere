@@ -18,6 +18,7 @@ public class products_temp {
     public String buy_quantity;
     public String location;
     public String uploader;
+    public String orderid;
 
     // Default constructor required for calls to
     // DataSnapshot.getValue(User.class)
@@ -42,4 +43,5 @@ public class products_temp {
     public String getLocation(){return location;}
     public String getCkey(){return ckey;}
     public String getUploader(){return uploader;}
+    public String getOrderid(){return orderid;}
 }

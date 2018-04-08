@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import java.util.List;
@@ -37,7 +36,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final Products products = product.get(position);
         holder.textViewName.setText(products.getName());
-        holder.textViewPrice.setText(products.getPrice());
+        holder.textViewPrice.setText("₹ "+products.getPrice());
 
         Glide.with(context).load(products.getImage()).into(holder.imageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {

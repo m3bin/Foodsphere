@@ -1,11 +1,15 @@
 package com.project.foodsphere;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.icu.util.ULocale;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 //import android.support.v4.app.Fragment;
 //import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,11 +28,28 @@ import com.bumptech.glide.Glide;
 //import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private RecyclerView recyclerView,recyclerView2;
+    private RecyclerView.Adapter adapter;
+    private List<Category> category;
+    private List<Products> product;
     private ImageView imgProfilePic;
+    private ProgressDialog progressDialog;
+    TextView order,recom;
+    DatabaseReference ref,ref1,ref2,ref3,ref4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +57,7 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Button t1 = findViewById(R.id.buy_temp);
+     /*   Button t1 = findViewById(R.id.buy_temp);
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +80,7 @@ public class HomeActivity extends AppCompatActivity
                 Intent intent1 = new Intent(HomeActivity.this,profile_activity.class);
                 startActivity(intent1);
             }
-        });
+        }); */
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -95,8 +116,113 @@ public class HomeActivity extends AppCompatActivity
             imgProfilePic = (ImageView) header.findViewById(R.id.imageView);
             Glide.with(getApplicationContext()).load(personPhotoUrl).into(imgProfilePic);
         }
+        order=findViewById(R.id.order);
+        recom=findViewById(R.id.recom);
+        category=new ArrayList<>();
+        product=new ArrayList<>();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.show();
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView2 = (RecyclerView) findViewById(R.id.recyclerView3);
+        recyclerView2.setHasFixedSize(true);
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final String uid = user.getUid();
+        ref = FirebaseDatabase.getInstance().getReference();
+        ref.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot snapshot1){
 
+                if (snapshot1.hasChild("preference/"+uid)){
+                    ref2 = FirebaseDatabase.getInstance().getReference().child("preference/"+uid);
+                    ref2.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot shot: dataSnapshot.getChildren()) {
+
+                                Category cat=shot.getValue(Category.class);
+                                category.add(cat);
+                            }
+                            recom.setText("Recommendations");
+                            adapter = new RowAdapter(getApplicationContext(), category);
+                            //adding adapter to recyclerview
+                            recyclerView.setAdapter(adapter);
+                            progressDialog.dismiss();
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            progressDialog.dismiss();
+                        }
+                    });
+
+                } else {
+                    ref1 = FirebaseDatabase.getInstance().getReference().child("default");
+                    ref1.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            //Toast.makeText(HomeActivity.this, "else" +dataSnapshot.getKey(), Toast.LENGTH_SHORT).show();
+                            for (DataSnapshot shot: dataSnapshot.getChildren()) {
+                                Category cat=shot.getValue(Category.class);
+                                //Toast.makeText(HomeActivity.this, "else2" +shot.getKey(), Toast.LENGTH_SHORT).show();
+                                category.add(cat);
+                            }
+                            recom.setText("Recommendations");
+                            adapter = new RowAdapter(getApplicationContext(), category);
+                            //adding adapter to recyclerview
+                            recyclerView.setAdapter(adapter);
+                            progressDialog.dismiss();
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            progressDialog.dismiss();
+                        }
+                    });
+                    //ref4.child(category).setValue("1");
+                    //Toast.makeText(cart_activity.this, "else" , Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        ref3 = FirebaseDatabase.getInstance().getReference().child("order/"+uid);
+        ref3.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot shot: dataSnapshot.getChildren()) {
+                    Products cat=shot.getValue(Products.class);
+                    product.add(cat);
+                }
+                if(!product.isEmpty())
+                {
+                    order.setText("Your Orders");
+                }
+
+                adapter = new OrderAdapter(getApplicationContext(), product);
+                //adding adapter to recyclerview
+                recyclerView2.setAdapter(adapter);
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                progressDialog.dismiss();
+            }
+
+        });
     }
+
 
 
     @Override

@@ -14,6 +14,7 @@ import android.location.LocationManager;
 
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -215,13 +216,8 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
                     }
 
                 }
-                if(product.isEmpty()){
-                    //creating adapter
-                    adapter = new MyAdapter(getApplicationContext(), product);
-                    //adding adapter to recyclerview
-                    recyclerView.setAdapter(adapter);
-                    TextView norslt = findViewById(R.id.no_rslt);
-                    norslt.setText("No results to display...");
+                if(product.isEmpty()) {
+                    Snackbar.make(findViewById(R.id.activity_show_images), "No results to display", Snackbar.LENGTH_LONG).show();
                 }
                 else{
                     TextView norslt = findViewById(R.id.no_rslt);
@@ -263,7 +259,6 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
                             addresses = geocoder.getFromLocation(latitude,longitude,1);
                             area = addresses.get(0).getLocality();
                             display();
-                           // Toast.makeText(getApplicationContext(),area, Toast.LENGTH_LONG).show();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

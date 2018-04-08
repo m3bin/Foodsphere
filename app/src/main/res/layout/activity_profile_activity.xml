@@ -120,6 +120,14 @@
                 android:text="My Products"
                 android:theme="@style/AppTheme.Button"
                 android:textColor="#E0E0E0"/>
+            <Button
+                android:id="@+id/my_orders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="My Orders"
+                android:theme="@style/AppTheme.Button"
+                android:textColor="#E0E0E0"/>
         </LinearLayout>
 
     </LinearLayout>

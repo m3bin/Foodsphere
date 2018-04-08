@@ -49,7 +49,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAjY3mw0lBFVQlZyT02oZyN1nAXHZQ-Sgk" />
 
-        <activity android:name=".my_products"></activity>
+        <activity android:name=".my_products" />
+        <activity android:name=".MyOrders"></activity>
     </application>
 
 </manifest>

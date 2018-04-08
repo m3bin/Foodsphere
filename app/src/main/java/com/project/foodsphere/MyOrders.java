@@ -1,12 +1,14 @@
 package com.project.foodsphere;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,7 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class my_products extends AppCompatActivity {
+public class MyOrders extends AppCompatActivity {
+
     private RecyclerView recyclerView;
 
     //adapter object
@@ -28,46 +31,42 @@ public class my_products extends AppCompatActivity {
     private DatabaseReference mDatabase;
     //progress dialog
     private ProgressDialog progressDialog;
-
-    private List<seller_order_holder> product_holder;
-    seller_order_holder products;
+    private List<products_temp> productList;
+    products_temp product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_products);
+        setContentView(R.layout.activity_my_orders);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String uid = user.getUid();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         progressDialog = new ProgressDialog(this);
-        product_holder = new ArrayList<>();
-
-        //displaying progress dialog while fetching images
+        productList = new ArrayList<>();
         progressDialog.setMessage("Please wait...");
         progressDialog.show();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("sellerorder");
-        //adding an event listener to fetch values
+        mDatabase.child("order");
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                //dismissing the progress dialog
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 progressDialog.dismiss();
-                DataSnapshot snap = snapshot.child("sellerorder/" + uid);
-
-                for (DataSnapshot postSnapshot : snap.getChildren()) {
-                    products = postSnapshot.getValue(seller_order_holder.class);
-                    product_holder.add(products);
+                dataSnapshot = dataSnapshot.child("order/"+uid);
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    product = postSnapshot.getValue(products_temp.class);
+                    productList.add(product);
                 }
-                if (product_holder.isEmpty()){
-                    Snackbar.make(findViewById(R.id.myproducts),"No products to display",Snackbar.LENGTH_LONG).show();
+                if (productList.isEmpty()){
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.my_orders),"No orders to display",Snackbar.LENGTH_LONG);
+                    View view = snackbar.getView();
+                    TextView tv = (TextView)view.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.WHITE);
+                    snackbar.show();
                 }
                 else {
-                    //creating adapter
-                    adapter = new my_product_Adapter(getApplicationContext(),product_holder);
-                    //adding adapter to recyclerview
+                    adapter = new MyOrdersAdapter(getApplicationContext(),productList);
                     recyclerView.setAdapter(adapter);
                 }
 
@@ -75,7 +74,7 @@ public class my_products extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                progressDialog.dismiss();
+
             }
         });
     }

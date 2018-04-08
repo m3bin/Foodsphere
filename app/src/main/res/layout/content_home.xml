@@ -13,28 +13,43 @@
         android:id="@+id/sell_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-   <LinearLayout
-       android:layout_width="wrap_content"
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+   <RelativeLayout
+       android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:orientation="vertical">
-       <Button
-           android:id="@+id/buy_temp"
-           android:layout_width="match_parent"
-           android:layout_height="40dp"
-           android:layout_marginTop="40dp"
-           android:text="Buy" />
-       <Button
-           android:id="@+id/sell_temp"
-           android:layout_width="match_parent"
-           android:layout_height="40dp"
-           android:layout_marginTop="40dp"
-           android:text="sell" />
-       <Button
-           android:id="@+id/prof_temp"
-           android:layout_width="match_parent"
-           android:layout_height="40dp"
-           android:layout_marginTop="40dp"
-           android:text="profile" />
-   </LinearLayout>
 
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="40dp"
+           android:textAlignment="center"
+           android:id="@+id/recom"
+           android:paddingTop="10dp"
+           android:textSize="20sp"/>
+       <android.support.v7.widget.RecyclerView
+           android:id="@+id/recyclerView1"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/recom">
+
+       </android.support.v7.widget.RecyclerView>
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="40dp"
+           android:id="@+id/order"
+           android:textAlignment="center"
+           android:paddingTop="10dp"
+           android:textSize="20sp"
+           android:layout_below="@id/recyclerView1"/>
+       <android.support.v7.widget.RecyclerView
+           android:id="@+id/recyclerView3"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/order">
+
+       </android.support.v7.widget.RecyclerView>
+   </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>

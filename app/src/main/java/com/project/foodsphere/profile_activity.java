@@ -29,7 +29,7 @@ import javax.security.auth.PrivateCredentialPermission;
 
 public class profile_activity extends AppCompatActivity {
 
-    Button prof_updt,prdt_ordrs;
+    Button prof_updt,prdt_ordrs,myorder;
     private DatabaseReference ref;
     private ImageView dpic;
     profile prof;
@@ -193,6 +193,7 @@ public class profile_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(profile_activity.this,fill_profile.class);
                 startActivity(intent);
+                finish();
             }
         });
         prdt_ordrs = findViewById(R.id.product_orders);
@@ -203,6 +204,13 @@ public class profile_activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        myorder = findViewById(R.id.my_orders);
+        myorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(profile_activity.this,MyOrders.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -114,9 +114,7 @@ public class DisplayAdapter extends ArrayAdapter<Products> {
                 else {
                     Snackbar.make(v, "Requested quantity is greater than available quantity",
                             Snackbar.LENGTH_SHORT)
-                            .setActionTextColor(Color.BLUE)
                             .show();
-                    //Toast.makeText(context, "Requested quantity is greater than available quantity", Toast.LENGTH_SHORT).show();
                 }
             }
         });

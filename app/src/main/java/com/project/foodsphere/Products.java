@@ -15,6 +15,7 @@ public class Products {
     public String quantity;
     public String location;
     public String uploader;
+    public String category;
 
     // Default constructor required for calls to
     // DataSnapshot.getValue(User.class)
@@ -38,5 +39,5 @@ public class Products {
     public String getLocation(){return location;}
     public String getCkey(){return ckey;}
     public String getUploader(){return uploader;}
-
+    public String getCategory(){return category;}
 }

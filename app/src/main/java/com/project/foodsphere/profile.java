@@ -27,9 +27,7 @@ public class profile {
         return district;
     }
 
-    public String getPincode() {
-        return pincode;
-    }
+    public String getPincode() {return pincode;}
 
     public String getPhone() {
         return phone;
