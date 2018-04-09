@@ -89,7 +89,7 @@ public class DisplayAdapter extends ArrayAdapter<Products> {
                 double qnty = Double.parseDouble(buy_qty);
                 double prdt_price = Double.parseDouble(products.getPrice());
                 String tot_price = Double.toString(qnty*prdt_price);
-                if (cmp1 >= qnty) {
+                if (cmp1 >= qnty && qnty > 0) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     String uid = user.getUid();
                     Toast.makeText(context, "Item Added to Cart", Toast.LENGTH_SHORT).show();
@@ -108,11 +108,11 @@ public class DisplayAdapter extends ArrayAdapter<Products> {
                     cart.put("measurement",products.getMeasurement());
                     mDatabase.child(id).setValue(cart);
                     //mDatabase.child(uid).setValue(cart);
-                    context.startActivity(new Intent(context,cart_activity.class));
+                    //context.startActivity(new Intent(context,cart_activity.class));
 
                 }
                 else {
-                    Snackbar.make(v, "Requested quantity is greater than available quantity",
+                    Snackbar.make(v, "Enter a valid quantity",
                             Snackbar.LENGTH_SHORT)
                             .show();
                 }

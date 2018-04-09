@@ -49,7 +49,7 @@ public class HomeActivity extends AppCompatActivity
     private ImageView imgProfilePic;
     private ProgressDialog progressDialog;
     TextView order,recom;
-    DatabaseReference ref,ref1,ref2,ref3,ref4;
+    DatabaseReference ref,ref1,ref2,ref3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -235,10 +235,10 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
+       // getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -249,13 +249,13 @@ public class HomeActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    } */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

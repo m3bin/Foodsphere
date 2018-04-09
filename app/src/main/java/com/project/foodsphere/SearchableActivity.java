@@ -112,6 +112,7 @@ public class SearchableActivity extends AppCompatActivity implements LocationLis
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             query = intent.getStringExtra(SearchManager.QUERY);
+            query = query.trim();
         }
         //search button
         FloatingActionButton fab_search = findViewById(R.id.fab_search);

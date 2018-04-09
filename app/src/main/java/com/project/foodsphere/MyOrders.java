@@ -1,8 +1,11 @@
 package com.project.foodsphere;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -77,5 +80,11 @@ public class MyOrders extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(MyOrders.this,HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

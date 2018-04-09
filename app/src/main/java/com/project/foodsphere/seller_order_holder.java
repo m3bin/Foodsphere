@@ -22,6 +22,7 @@ public class seller_order_holder {
     public String buyer_district;
     public String buyer_pincode;
     public String buyer_phone;
+    public String qty_left;
     //default constructor
     public seller_order_holder(){
 
@@ -51,7 +52,6 @@ public class seller_order_holder {
         return buyer_district;
     }
     public String getPincode() { return buyer_pincode; }
-    public String getPhone() {
-        return buyer_phone;
-    }
+    public String getPhone() { return buyer_phone; }
+    public String getQty_left(){return qty_left;}
 }

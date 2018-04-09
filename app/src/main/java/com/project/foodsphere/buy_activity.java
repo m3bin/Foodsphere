@@ -211,7 +211,7 @@ public class buy_activity extends AppCompatActivity implements LocationListener 
                 for (DataSnapshot postSnapshot : snap.getChildren()) {
                     Products products = postSnapshot.getValue(Products.class);
                     //Toast.makeText(buy_activity.this, products.getName(), Toast.LENGTH_SHORT).show();
-                    if ((products.getLocation().equalsIgnoreCase(area)) && !(products.getUploader().equals(uid))){
+                    if ((products.getLocation().equalsIgnoreCase(area)) && !(products.getUploader().equals(uid)) && (Double.parseDouble(products.getQuantity())>0.0)){
                         product.add(products);
                     }
 
