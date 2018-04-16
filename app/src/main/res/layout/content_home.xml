@@ -13,6 +13,7 @@
         android:id="@+id/sell_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,14 +21,208 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:orientation="vertical">
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/sv">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="120dp"
+           android:id="@+id/ll"
+           android:orientation="horizontal"
+           android:background="#FFFFFF">
+           <RelativeLayout
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:clickable="true"
+               android:id="@+id/fruits">
+               <ImageView
+                   android:layout_width="70dp"
+                   android:layout_height="70dp"
+                   android:layout_marginLeft="15dp"
+                   android:id="@+id/cat_fruit"
+                   android:padding="5dp"
+                   android:src="@drawable/ic_fruits"/>
+               <TextView
+                   android:layout_width="100dp"
+                   android:layout_height="30dp"
+                   android:layout_below="@+id/cat_fruit"
+                   android:text="Fruits"
+                   android:textAlignment="center"
+                   android:textSize="17sp"
+                   />
 
+           </RelativeLayout>
+           <RelativeLayout
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:clickable="true"
+               android:id="@+id/vegetables">
+               <ImageView
+                   android:layout_width="70dp"
+                   android:layout_height="70dp"
+                   android:layout_marginLeft="15dp"
+                   android:id="@+id/cat_veg"
+                   android:padding="5dp"
+                   android:src="@drawable/ic_vegetables"/>
+               <TextView
+                   android:layout_width="100dp"
+                   android:layout_height="30dp"
+                   android:layout_below="@+id/cat_veg"
+                   android:text="Vegetables"
+                   android:textAlignment="center"
+                   android:textSize="17sp"
+                   />
+
+           </RelativeLayout>
+           <RelativeLayout
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:clickable="true"
+               android:id="@+id/bakery">
+               <ImageView
+                   android:layout_width="70dp"
+                   android:layout_height="70dp"
+                   android:layout_marginLeft="15dp"
+                   android:id="@+id/cat_bak"
+                   android:padding="5dp"
+                   android:src="@drawable/ic_bakery"/>
+               <TextView
+                   android:layout_width="100dp"
+                   android:layout_height="30dp"
+                   android:layout_below="@+id/cat_bak"
+                   android:text="Bakery"
+                   android:textAlignment="center"
+                   android:textSize="17sp"
+                   />
+
+           </RelativeLayout>
+           <RelativeLayout
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:clickable="true"
+               android:id="@+id/dairy">
+               <ImageView
+                   android:layout_width="70dp"
+                   android:layout_height="70dp"
+                   android:layout_marginLeft="15dp"
+                   android:id="@+id/cat_dairy"
+                   android:padding="5dp"
+                   android:src="@drawable/ic_dairy"/>
+
+               <TextView
+                   android:layout_width="100dp"
+                   android:layout_height="50dp"
+                   android:layout_alignParentStart="true"
+                   android:layout_below="@+id/cat_dairy"
+                   android:text="Dairy &amp; Eggs"
+                   android:textAlignment="center"
+                   android:textSize="17sp" />
+
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:clickable="true"
+               android:id="@+id/beverages">
+               <ImageView
+                   android:layout_width="70dp"
+                   android:layout_height="70dp"
+                   android:layout_marginLeft="15dp"
+                   android:id="@+id/cat_bev"
+                   android:padding="5dp"
+                   android:src="@drawable/ic_beverages"/>
+
+               <TextView
+                   android:layout_width="100dp"
+                   android:layout_height="50dp"
+                   android:layout_alignParentStart="true"
+                   android:layout_below="@+id/cat_bev"
+                   android:text="Beverages"
+                   android:textAlignment="center"
+                   android:textSize="17sp" />
+
+           </RelativeLayout>
+           <RelativeLayout
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:clickable="true"
+               android:id="@+id/meat">
+               <ImageView
+                   android:layout_width="70dp"
+                   android:layout_height="70dp"
+                   android:layout_marginLeft="15dp"
+                   android:id="@+id/cat_meat"
+                   android:padding="5dp"
+                   android:src="@drawable/ic_meat"/>
+
+               <TextView
+                   android:layout_width="100dp"
+                   android:layout_height="50dp"
+                   android:layout_alignParentStart="true"
+                   android:layout_below="@+id/cat_meat"
+                   android:text="Meat"
+                   android:textAlignment="center"
+                   android:textSize="17sp" />
+
+           </RelativeLayout>
+           <RelativeLayout
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:clickable="true"
+               android:id="@+id/household">
+               <ImageView
+                   android:layout_width="70dp"
+                   android:layout_height="70dp"
+                   android:layout_marginLeft="15dp"
+                   android:id="@+id/cat_hou"
+                   android:padding="5dp"
+                   android:src="@drawable/ic_household"/>
+
+               <TextView
+                   android:layout_width="100dp"
+                   android:layout_height="50dp"
+                   android:layout_alignParentStart="true"
+                   android:layout_below="@+id/cat_hou"
+                   android:text="Household"
+                   android:textAlignment="center"
+                   android:textSize="17sp" />
+
+           </RelativeLayout>
+           <RelativeLayout
+               android:layout_width="100dp"
+               android:layout_height="wrap_content"
+               android:clickable="true"
+               android:id="@+id/care">
+               <ImageView
+                   android:layout_width="70dp"
+                   android:layout_height="70dp"
+                   android:layout_marginLeft="15dp"
+                   android:id="@+id/cat_care"
+                   android:padding="5dp"
+                   android:src="@drawable/ic_personalcare"/>
+
+               <TextView
+                   android:layout_width="100dp"
+                   android:layout_height="50dp"
+                   android:layout_alignParentStart="true"
+                   android:layout_below="@+id/cat_care"
+                   android:text="Personal care"
+                   android:textAlignment="center"
+                   android:textSize="17sp" />
+
+           </RelativeLayout>
+       </LinearLayout>
+        </HorizontalScrollView>
        <TextView
            android:layout_width="match_parent"
            android:layout_height="40dp"
            android:textAlignment="center"
            android:id="@+id/recom"
            android:paddingTop="10dp"
-           android:textSize="20sp"/>
+           android:textSize="20sp"
+           android:layout_below="@+id/sv"/>
        <android.support.v7.widget.RecyclerView
            android:id="@+id/recyclerView1"
            android:layout_width="match_parent"

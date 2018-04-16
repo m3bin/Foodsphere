@@ -28,6 +28,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +61,8 @@ public class HomeActivity extends AppCompatActivity
     private ProgressDialog progressDialog;
     TextView order,recom;
     DatabaseReference ref,ref1,ref2,ref3;
+    RelativeLayout fruits,vegetables,bakery,dairy,staples,meat,care,household,beverages;
+    LinearLayout ll;
     // flag for GPS status
     boolean isGPSEnabled = false;
 
@@ -99,30 +103,6 @@ public class HomeActivity extends AppCompatActivity
                 new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                 1);
 
-     /*   Button t1 = findViewById(R.id.buy_temp);
-        t1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(HomeActivity.this,buy_activity.class);
-                startActivity(intent1);
-            }
-        });
-        Button t2 = findViewById(R.id.sell_temp);
-        t2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(HomeActivity.this,sell_activity.class);
-                startActivity(intent1);
-            }
-        });
-        Button t3 = findViewById(R.id.prof_temp);
-        t3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(HomeActivity.this,profile_activity.class);
-                startActivity(intent1);
-            }
-        }); */
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -160,6 +140,78 @@ public class HomeActivity extends AppCompatActivity
         }
         order=findViewById(R.id.order);
         recom=findViewById(R.id.recom);
+        fruits=findViewById(R.id.fruits);
+        vegetables=findViewById(R.id.vegetables);
+        bakery=findViewById(R.id.bakery);
+        dairy=findViewById(R.id.dairy);
+        beverages=findViewById(R.id.beverages);
+        care=findViewById(R.id.care);
+        household=findViewById(R.id.household);
+        meat=findViewById(R.id.meat);
+
+        fruits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(HomeActivity.this,category_activity.class).putExtra("category","Fruits");
+                startActivity(intent);
+            }
+        });
+        vegetables.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(HomeActivity.this,category_activity.class).putExtra("category","Vegetables");
+                startActivity(intent);
+            }
+        });
+        bakery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(HomeActivity.this,category_activity.class).putExtra("category","Bread and Bakery");
+                startActivity(intent);
+            }
+        });
+        dairy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(HomeActivity.this,category_activity.class).putExtra("category","Dairy and Eggs");
+                startActivity(intent);
+            }
+        });
+        /*staples.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(HomeActivity.this,category_activity.class).putExtra("category","Grocery and Staples");
+                startActivity(intent);
+            }
+        });*/
+        beverages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(HomeActivity.this,category_activity.class).putExtra("category","Beverages");
+                startActivity(intent);
+            }
+        });
+        meat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(HomeActivity.this,category_activity.class).putExtra("category","Meat");
+                startActivity(intent);
+            }
+        });
+        household.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(HomeActivity.this,category_activity.class).putExtra("category","Household");
+                startActivity(intent);
+            }
+        });
+        care.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(HomeActivity.this,category_activity.class).putExtra("category","Personal Care");
+                startActivity(intent);
+            }
+        });
         category=new ArrayList<>();
         product=new ArrayList<>();
         progressDialog = new ProgressDialog(this);

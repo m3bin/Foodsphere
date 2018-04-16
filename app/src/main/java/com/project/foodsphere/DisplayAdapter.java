@@ -107,9 +107,8 @@ public class DisplayAdapter extends ArrayAdapter<Products> {
                     cart.put("uploader",products.getUploader());
                     cart.put("measurement",products.getMeasurement());
                     mDatabase.child(id).setValue(cart);
-                    //mDatabase.child(uid).setValue(cart);
-                    //context.startActivity(new Intent(context,cart_activity.class));
-
+                    context.startActivity(new Intent(context,cart_activity.class));
+                    //((Activity)context).finish();
                 }
                 else {
                     Snackbar.make(v, "Enter a valid quantity",

@@ -7,25 +7,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.security.auth.PrivateCredentialPermission;
 
 public class profile_activity extends AppCompatActivity {
 
@@ -66,24 +59,22 @@ public class profile_activity extends AppCompatActivity {
                     //Toast.makeText(buy_activity.this, products.getName(), Toast.LENGTH_SHORT).show();
                     if (prof.getUid().equals(uid)){
                         String hname = prof.getHouse_name();
-                        TextView house = (TextView) findViewById(R.id.hname);
-                        house.setText(hname);
+                        if (hname==null){
+                            TextView house = (TextView) findViewById(R.id.hname);
+                            house.setText("Please update address");
+                        }
+                        else {
+                            TextView house = (TextView) findViewById(R.id.hname);
+                            house.setText(hname);
+                        }
 
                         String landmark = prof.getLandmark();
                         TextView landmark1 = (TextView) findViewById(R.id.landmark);
                         landmark1.setText(landmark);
 
                         String city  = prof.getCity();
-                        if (city==null){
-                            TextView city1 = (TextView) findViewById(R.id.city);
-                            city1.setText("Please update address");
-                        }
-                        else
-                        {
-                            TextView city1 = (TextView) findViewById(R.id.city);
-                            city1.setText(city);
-                        }
-
+                        TextView city1 = (TextView) findViewById(R.id.city);
+                        city1.setText(city);
 
                         String district = prof.getDistrict();
                         TextView district1 = (TextView) findViewById(R.id.district);
